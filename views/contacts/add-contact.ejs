@@ -1,0 +1,51 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/contact.css">
+</head>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <% let telAddress1, telAddress2; %>
+    <% if((editMode && hasError)){ %>
+            <%  telAddress1 =  contact.Telefones[0]%>
+            <%  telAddress2 =  contact.Telefones[1]%>
+        <% } else if(editMode){ %>
+            <%  telAddress1 =  contact.Telefones[0]?.NUMERO %>
+            <%  telAddress2 =  contact.Telefones[1]?.NUMERO %>
+            <% } %>
+            <% const nameValue = editMode || hasError ? contact.nome : ''%>
+            <main>
+                <% if (errorMessage) { %>
+                    <div class="user-message user-message--error"><%= errorMessage %></div>
+                    <% }  %>
+                    <form class="product-form" method="POST" action="/<% if (editMode) { %>edit-contact<% } else { %>add-contact<% } %>">
+                        <div class="form-control">
+                            <label for="name">Nome</label>
+                            <input type="text" name="name" id="name" value="<%= nameValue %>">
+                        </div>
+                        <div class="form-control">
+                            <label for="age">Idade</label>
+                            <input type="number" name="age" id="age" value="<% if (editMode || hasError) { %><%= contact.idade %><% } %>">
+                        </div>
+                        <div class="form-control">
+                <label for="phone">Telefone 1</label>
+                <input type="tel" name="telephone1" id="telephone1" step="0.01" value="<%= telAddress1 %>">
+            </div>
+            <div class="form-control">
+                <label for="phone">Telefone 2</label>
+                <input type="tel" name="telephone2" id="telephone2" step="0.01" value="<%= telAddress2 %>">
+            </div>
+                <% if (editMode || hasError){ %>
+                    <input type="hidden" value="<%= contact.id %>" name="contactId">
+                <% } %>
+            <button class="btn" type="submit"><% if (editMode) { %>Atualizar<% } else { %>Registrar<% } %></button>
+        </form>
+    </main>
+    <script>
+        $('#telephone1').mask("+99 (99) 99999-9999")
+        $('#telephone2').mask("+99 (99) 99999-9999")
+    </script>
+<%- include('../includes/end.ejs') %>

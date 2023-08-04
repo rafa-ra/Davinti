@@ -1,0 +1,44 @@
+.product-form {
+  width: 20rem;
+  max-width: 90%;
+  margin: auto;
+  display: block;
+}
+
+.product-item {
+  width: 20rem;
+  max-width: 95%;
+  margin: 1rem;
+}
+
+.product__title {
+  font-size: 1.7rem;
+  text-align: center;
+}
+
+.product__price {
+  font-size: 1.2rem;
+  text-align: center;
+  color: #4d4d4d;
+  margin-top: 3px;
+  padding: 5px;
+  border: 2px solid gray;
+}
+
+.search {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-input {
+  height: 38px;
+  width: 200px;
+  padding-top: 3px;
+}
+
+.search-btn {
+  height: 38px;
+  margin-top: 1px;
+}
